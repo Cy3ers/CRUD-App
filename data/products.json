@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Legos",
+      "available": false
+    },
+    {
+      "id": 2,
+      "name": "Playdough",
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "Oil Paints",
+      "available": true
+    },
+    {
+      "id": 4,
+      "name": "Pencils",
+      "available": true
+    },
+    {
+      "id": 5,
+      "name": "Cookies",
+      "available": true
+    }
+  ]
+}
