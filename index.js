@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
-const userRoutes = require("./routes/users.js");
-const prodRoutes = require("./routes/products.js");
-const logger = require("./middleware/logger-middleware.js");
-const jsonParser = require("./middleware/parse-middleware.js");
+const { userRoutes, prodRoutes } = require("./routes");
+const { logger, jsonParser } = require("./middleware");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 
@@ -18,5 +21,4 @@ app.get("/", (req, res) => {
 app.use("/users", userRoutes);
 app.use("/products", prodRoutes);
 
-const port = 5000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
