@@ -16,14 +16,14 @@ const writeData = (data) => {
 
 router.get("/", (req, res) => {
   const data = readData();
-  res.send(data.users);
+  res.status(200).send(data.users);
 });
 
 router.get("/:id", (req, res) => {
   const data = readData();
   const user = data.users.find((c) => c.id === parseInt(req.params.id));
   if (!user) return res.status(404).send("The user with the given ID was not found.");
-  res.send(user);
+  res.status(200).send(user);
 });
 
 router.post("", (req, res) => {
@@ -35,7 +35,7 @@ router.post("", (req, res) => {
   };
   data.users.push(newUser);
   writeData(data);
-  res.send(newUser);
+  res.status(201).send(newUser);
 });
 
 router.put("/:id", (req, res) => {
@@ -47,7 +47,7 @@ router.put("/:id", (req, res) => {
   user.email = req.body.email;
 
   writeData(data);
-  res.send(user);
+  res.status(200).send(user);
 });
 
 router.patch("/:id", (req, res) => {
@@ -63,7 +63,7 @@ router.patch("/:id", (req, res) => {
   }
 
   writeData(data);
-  res.send(user);
+  res.status(200).send(user);
 });
 
 router.delete("/:id", (req, res) => {
@@ -74,7 +74,7 @@ router.delete("/:id", (req, res) => {
   const deletedUser = data.users.splice(userIndex, 1);
   writeData(data);
 
-  res.send(deletedUser);
+  res.status(200).send(deletedUser);
 });
 
 module.exports = router;

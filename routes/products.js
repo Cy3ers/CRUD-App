@@ -16,14 +16,14 @@ const writeData = (data) => {
 
 router.get("/", (req, res) => {
   const data = readData();
-  res.send(data.products);
+  res.status(200).send(data.products);
 });
 
 router.get("/:id", (req, res) => {
   const data = readData();
   const product = data.products.find((c) => c.id === parseInt(req.params.id));
   if (!product) return res.status(404).send("The product with the given ID was not found.");
-  res.send(product);
+  res.status(200).send(product);
 });
 
 router.post("/", (req, res) => {
@@ -35,7 +35,7 @@ router.post("/", (req, res) => {
   };
   data.products.push(newProduct);
   writeData(data);
-  res.send(newProduct);
+  res.status(201).send(newProduct);
 });
 
 router.put("/:id", (req, res) => {
@@ -47,7 +47,7 @@ router.put("/:id", (req, res) => {
   product.available = req.body.available;
 
   writeData(data);
-  res.send(product);
+  res.status(200).send(product);
 });
 
 router.patch("/:id", (req, res) => {
@@ -63,7 +63,7 @@ router.patch("/:id", (req, res) => {
   }
 
   writeData(data);
-  res.send(product);
+  res.status(200).send(product);
 });
 
 router.delete("/:id", (req, res) => {
@@ -74,7 +74,7 @@ router.delete("/:id", (req, res) => {
   const deletedProd = data.products.splice(prodIndex, 1);
   writeData(data);
 
-  res.send(deletedProd);
+  res.status(200).send(deletedProd);
 });
 
 module.exports = router;
