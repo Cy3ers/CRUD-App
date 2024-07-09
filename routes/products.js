@@ -58,7 +58,7 @@ router.patch("/:id", (req, res) => {
   if (req.body.name) {
     product.name = req.body.name;
   }
-  if (req.body.available) {
+  if (req.body.available !== undefined) {
     product.available = req.body.available;
   }
 
